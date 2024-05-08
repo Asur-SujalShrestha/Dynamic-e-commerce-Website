@@ -27,7 +27,7 @@
 	<section class="section">
         <div class="img-column">
             <div class="big-image-wrapper">
-                <img src="/CourseWork/devices/Phone/Iphone 13.png" alt="error">
+                <img src="/CourseWork/photos/products/${product.product_image }" alt="error">
             </div>
         </div>
         <div class="buy-column">
@@ -41,8 +41,8 @@
 
             </div>
             <div class="buttons">
-                <a href="#">Buy</a>
-                <a href="#">Add to Cart</a>
+                <a href="/CourseWork/Htmls/BuyNow.jsp">Buy</a>
+                <a href="/CourseWork/CartServlet?id=${product.product_Id }">Add to Cart</a>
             </div>
         </div>
     </section>

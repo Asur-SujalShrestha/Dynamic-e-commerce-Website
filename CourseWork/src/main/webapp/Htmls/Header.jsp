@@ -12,33 +12,57 @@
 
 	<%
 		String userSession = (String) session.getAttribute("userName");
-		String cookieUsername  = null;
+		String Username  = null;
+		String userEmail = null;
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null){
 			for(Cookie cookie: cookies){
-				if(cookie.getName().equals("user")) cookieUsername = cookie.getValue();
-				
+				if(cookie.getName().equals("user")) Username = cookie.getValue();
+				if(cookie.getName().equals("email")) userEmail = cookie.getValue();
 			}
 		}
 		boolean isLoggedIn = userSession != null;
+		
 	%>
 
 	<header>
         <nav>
             <div class="logo">
-                <h2 style="color: white;">Catalyst</h2>
+                <h2 style="color: white;">AppleHub</h2>
             </div>
-            <div class="search">
-                <input type="text" name="search" placeholder="Search">
-                <button><img src="/CourseWork/icons/search.png" alt="error"></button>
+            
+            <%
+				String SearchErrormessage = (String) request.getAttribute("errorMessage");
+				if(SearchErrormessage != null && !SearchErrormessage.isEmpty()){
+			%>
+            <div class="search" style="border: 2px solid red;">
+            	<form class="searchForm" action="/CourseWork/SearchServlet" method="post">
+            	<input type="text" name="search" placeholder="<%= SearchErrormessage%>">
+            	<button><img src="/CourseWork/icons/search.png" alt="error"></button>
+             	</form>
             </div>
+            <%
+				}
+				else{
+            %>
+            	<div class="search">
+            		<form class="searchForm" action="/CourseWork/SearchServlet" method="post">
+                	<input type="text" name="search" placeholder="Search">
+                	<button><img src="/CourseWork/icons/search.png" alt="error"></button>
+             		</form>
+            	</div>
+                <%
+					}
+                %>
+                
             <div class="menu">
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <li><a href="/CourseWork/Htmls/Cart.jsp"><i class="fa-solid fa-cart-shopping"></i></a></li>
                     <%
                     	if(isLoggedIn){
                     %>
-                    	<li><a href="/CourseWork/Htmls/profile.jsp" style="background-color: #ffffff1a; padding:3px 6px; border-radius: 20px"> Hi, <%=cookieUsername %></a></li>
+                    	
+                    	<li><a href="/CourseWork/Htmls/profile.jsp" style="background-color: #ffffff1a; padding:3px 6px; border-radius: 20px"> Hi, <%=Username %></a></li>
                     	<li class = "profileName"><a href="/CourseWork/Htmls/profile.jsp"><i class="fa-solid fa-user"></i></a></li>
                     	<li><form action="/CourseWork/LogoutServlet" method="post">
                  			<button type="submit">Logout</button>
@@ -50,7 +74,7 @@
                     <li><a href="/CourseWork/Htmls/Register.jsp">Sign up</a></li>
                     <li>|</li>
                     <li><a href="/CourseWork/Htmls/Login.jsp">Sign in</a></li>
-                    <li><a href="/CourseWork/Htmls/profile.jsp"><i class="fa-solid fa-user"></i></a></li>
+                    
                     <%
                     	}
                     %>
@@ -122,5 +146,14 @@
             <li><a href="/CourseWork/Htmls/aboutUs.jsp">about us</a></li>
         </ul>
     </section>
+    
+    <%
+		
+		if(SearchErrormessage != null && !SearchErrormessage.isEmpty()){
+	%>
+		<p style="color: black; margin: 20px;">Please enter the product name</p>
+	<%
+		}
+	%>
 </body>
 </html>

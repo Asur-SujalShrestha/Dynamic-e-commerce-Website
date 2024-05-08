@@ -19,7 +19,7 @@
 	<div class="containers">
 	<c:forEach var="product" items="${product.rows}">
   <div class="product">
-    <img src="/CourseWork/devices/Phone/Iphone 13.png" alt="Iphone 13">
+    <img src="/CourseWork/devices/Phone/${product.product_image }" alt="Iphone 13">
     <div class="product-info">
     	<div class="detail">
       <h2>${product.productName }</h2>

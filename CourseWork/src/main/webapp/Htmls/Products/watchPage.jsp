@@ -18,14 +18,14 @@
 	<div class="containers">
 	<c:forEach var="product" items="${product.rows}">
   <div class="product">
-    <img src="/CourseWork/devices/Watch/Apple watch se.png" alt="error">
+    <img src="/CourseWork/devices/Watch/${product.product_image }" alt="error">
     <div class="product-info">
     	<div class="detail">
       <h2>${product.productName }</h2>
       <h3>Price: ${ product.price }</h3>
       <p>${product.productDescription }</p>
       </div>
-      <button class="buy-btn">Buy Now</button>
+      <button class="buy-btn"> <a href="/CourseWork/Htmls/ProductDetail.jsp?productName=${product.productName}"> Buy Now</a></button>
     </div>
   </div>
   </c:forEach>

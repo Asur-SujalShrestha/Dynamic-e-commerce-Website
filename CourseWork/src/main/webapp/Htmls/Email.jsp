@@ -80,7 +80,7 @@
 	<div class="right-nav">
 	<div class="profile-img">
 	
-		<img alt="error" src="/week3/images/user/${user.image }">
+		<img alt="error" src="/CourseWork/photos/${user.profilePic }">
 	
 	</div>
 		

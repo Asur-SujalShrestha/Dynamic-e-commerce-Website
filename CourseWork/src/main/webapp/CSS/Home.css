@@ -22,6 +22,17 @@ nav{
     justify-content: center;
     align-items: center;
 }
+.searchForm{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(35, 27, 27);
+    height: 37px;
+    width: 420px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+}
 .menu ul li{
     list-style-type: none;
     color: white;

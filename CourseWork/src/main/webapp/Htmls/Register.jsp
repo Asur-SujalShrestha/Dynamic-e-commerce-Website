@@ -13,7 +13,7 @@
 
 	<div class="start">
 	
-	<form action="/CourseWork/RegistrationServlet" method="post">
+	<form action="/CourseWork/RegistrationServlet" class="registerForm" method="post" enctype="multipart/form-data">
 	<div style="display:flex; justify-content: center; margin-top: 10px;">
 		<%
 			String errormessage = (String) request.getAttribute(StringUtils.errorMessage);
@@ -106,6 +106,11 @@
 		<div class='userInput'>
 			<label>Phone Number</label>
 			<input name = 'phone' type="text" placeholder="Enter your Phone number" required>
+		</div>
+		
+		<div class='userInput'>
+			<label>Profile Picture</label>
+			<input name = 'profilePic' type="file" placeholder="Choose Profile Pic" required>
 		</div>
 		
 		<div class='userInput'>

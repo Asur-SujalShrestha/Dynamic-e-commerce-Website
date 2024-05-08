@@ -55,26 +55,49 @@
 			<form style="display: flex; flex-direction: column;" action="/CourseWork/UpdateServlet" method="post">
 		
 			<label>User Name</label>
-			<input disabled type=text class="inputs" name="userName" value="${user.userName }">
+			<input Readonly type=text  name="userName" value="${user.userName }">
 		
 			<label>First Name</label>
-			<input disabled type=text class="inputs" name="firstName" value="${user.firstName } ${user.lastName}">
-			
+			<%
+			String errormessage3 = (String) request.getAttribute("errorMessage3");
+			if(errormessage3 != null && !errormessage3.isEmpty()){
+			%>
+			<input Readonly type=text class="inputs" name="firstName" placeholder="<%=errormessage3 %>" style="border: 2px solid red">
+			<%
+			}
+			else{
+			%>
+			<input Readonly type=text class="inputs" name="firstName" value="${user.firstName }">
+			<%
+			}
+			%>
 			<label>Last Name</label>
-			<input disabled type=text class="inputs" name="lastName" value="${user.lastName}">
+			<%
+			String errormessage4 = (String) request.getAttribute("errorMessage4");
+			if(errormessage4 != null && !errormessage4.isEmpty()){
+			%>
+			<input Readonly type=text class="inputs" name="lastName" placeholder="<%=errormessage4 %>" style="border: 2px solid red">
+			<%
+			}
+			else{
+			%>
+			<input Readonly type=text class="inputs" name="lastName" value="${user.lastName}">
+			<%
+			}
+			%>
 		
 			<label>Birthday</label>
-			<input disabled="disabled" class="inputs" type=date name="birthday" value="${user.birthday }">
+			<input Readonly class="inputs" type=date name="birthday" value="${user.birthday }">
 		
 			<label>Email-Address</label>
-			<input class="inputs" type=text name="email" value="${user.email }" readonly>
+			<input  type=text name="email" value="${user.email }" readonly>
 			<p>This is your primary email address and will be used to send notification emails.</p>
 		
 			<label>Phone Number</label>
-			<input disabled class="inputs" type=text name="phone" value="${user.phone }">
+			<input Readonly class="inputs" type=text name="phone" value="${user.phone }">
 		
 			<label>Address</label>
-			<input disabled="disabled" class="inputs" type=text name="address" value="${user.address } ">
+			<input Readonly class="inputs" type=text name="address" value="${user.address } ">
 			
 			
 			<div class="submit-button">
@@ -91,7 +114,7 @@
 	<div class="right-nav">
 	<div class="profile-img">
 	
-		<img alt="error" src="/week3/images/user/${user.image }">
+		<img alt="error" src="/week3/images/user/${user.profilePic }">
 	
 	</div>
 		
@@ -107,7 +130,7 @@
 			var changes = document.getElementsByClassName('inputs');
 			var button = document.getElementById('save');
 			for(var i = 0; i< changes.length; i++){
-				changes[i].disabled = false
+				changes[i].removeAttribute("Readonly")
 			}
 			button.style.display = 'inline';
 		}

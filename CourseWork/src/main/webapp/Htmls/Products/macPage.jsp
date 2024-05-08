@@ -19,7 +19,7 @@
 	<div class="containers">
 	<c:forEach var="product" items="${product.rows}">
   <div class="product">
-    <img src="/CourseWork/devices/Laptop/mac pro 16 inch.jfif" alt="MacBook Pro 16-inch">
+    <img src="/CourseWork/devices/Laptop/${product.product_image }" alt="MacBook Pro 16-inch">
     <div class="product-info">
     <div class="detail">
       <input type="text" name="productName" value="${product.productName }" readonly>

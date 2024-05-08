@@ -56,3 +56,7 @@ body {
       	border: none;
       	outline: none;
     }
+    .buy-btn a{
+    text-decoration: none;
+    color: black;
+    }
