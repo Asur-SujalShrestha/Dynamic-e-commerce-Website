@@ -83,77 +83,77 @@ public class UpdateServlet extends HttpServlet {
 			}
 		}
 		
-		
+
 		if(firstNameCharacter < 1) {
 			if(firstNameNumber < 1) {
 				if(lastNameCharacter <1) {
 					if(lastNameNumber <1) {
-		
-		if(userNameCharacter < 1) {
-			if(userNameNumber < 1) {
-		
-		Users user = new Users(userName, firstName, lastName, birthDate, address, email, phone);
-		int result = 0;
-		try {
-			result = controller.updateData(user);
-			if(result > 0) {
-				String errormessage = "Account updated";
-				request.setAttribute("errorMessage", errormessage);
-				request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
-			}
-			else {
-				String errormessage = "Account Not updated";
-				request.setAttribute("errorMessage", errormessage);
-				request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
-				
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			String errormessage = "Server Error";
-			request.setAttribute("errorMessage", errormessage);
-			request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
-		}
-				}
-				
-		
-		else {
-			String errormessage = "No Number Allowed";
-			request.setAttribute("errorMessage2", errormessage);
-			request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
-		}
-		}
-		
-		else {
-			String errormessage = "No Special Character Allowed";
-			request.setAttribute("errorMessage2", errormessage);
-			request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
-		}	
-		}
-		
-			else {
+
+						if(userNameCharacter < 1) {
+							if(userNameNumber < 1) {
+
+								Users user = new Users(userName, firstName, lastName, birthDate, address, email, phone);
+								int result = 0;
+								try {
+									result = controller.updateData(user);
+									if(result > 0) {
+										String errormessage = "Account updated";
+										request.setAttribute("errorMessage", errormessage);
+										request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
+									}
+									else {
+										String errormessage = "Account Not updated";
+										request.setAttribute("errorMessage", errormessage);
+										request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
+
+									}
+								} catch (ClassNotFoundException | SQLException e) {
+									String errormessage = "Server Error";
+									request.setAttribute("errorMessage", errormessage);
+									request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
+								}
+							}
+
+
+							else {
+								String errormessage = "No Number Allowed";
+								request.setAttribute("errorMessage2", errormessage);
+								request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
+							}
+						}
+
+						else {
+							String errormessage = "No Special Character Allowed";
+							request.setAttribute("errorMessage2", errormessage);
+							request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
+						}	
+					}
+
+					else {
 						String errormessage = "Cannot contains Numbers";
 						request.setAttribute("errorMessage4", errormessage);
-						request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
+						request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
 					}
 				}
 				else {
 					String errormessage = "Cannot contains Special Character";
 					request.setAttribute("errorMessage4", errormessage);
-					request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
+					request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
 				}
 			}
 			else {
 				String errormessage = "Cannot contains Numbers";
 				request.setAttribute("errorMessage3", errormessage);
-				request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
+				request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
 			}
 		}
 		else {
 			String errormessage = "Cannot contains Special character";
 			request.setAttribute("errorMessage3", errormessage);
-			request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
+			request.getRequestDispatcher("/Htmls/profile.jsp").forward(request, response);
 		}
-		
-		
+
+
 	}
 	
 

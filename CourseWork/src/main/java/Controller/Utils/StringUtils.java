@@ -1,5 +1,7 @@
 package Controller.Utils;
 
+import java.io.File;
+
 public class StringUtils {
 	public static final String registration_Error = "please correct the form data";
 	public static final String server_Error = "Server is unable to Respond";
@@ -13,4 +15,8 @@ public class StringUtils {
 	public static final String get_User_Course = "getUserCourse";
 	public static final String getUserDoB = "getUserDoB";
 	public static final String User = "user";
+	
+	public static final String IMAGE_DIR = "Users\\DELL\\eclipse-workspace\\CourseWork\\src\\main\\webapp\\photos";
+	public static final String IMAGE_DIR_SAVE_PATH = "C:" +File.separator + IMAGE_DIR;
+	
 }
