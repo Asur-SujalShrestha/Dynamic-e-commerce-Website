@@ -17,10 +17,11 @@
     <div class="sidenav">
       <h2>Dashboard</h2>
       <ul>
-        <li><a href="#">Dashboard Overview</a></li>
-        <li><a href="#">User Management</a></li>
-        <li><a href="#">Product Management</a></li>
-        <li><a href="#">Order Management</a></li>
+        <li><a href="/CourseWork/Htmls/AdminDashboard.jsp">Dashboard Overview</a></li>
+        <li><a href="/CourseWork/Htmls/UserManagement.jsp">User Management</a></li>
+        <li><a href="/CourseWork/Htmls/ProductManagement.jsp">Product Management</a></li>
+        <li><a href="/CourseWork/Htmls/OrderManagement.jsp">Order Management</a></li>
+        <li><a href="/CourseWork/AdminLogoutServlet">Logout</a></li>
       </ul>
     </div>
     <div class="main">
@@ -43,15 +44,25 @@
           <p>$45,000</p>
         </div>
       </div>
-      <div class = "user">
-      <!-- User table -->
+      
       <sql:setDataSource var="dbConnection" driver="com.mysql.cj.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/coursework" user="root"
 		password="" />
-		
+      
+      <div class = "user">
+      <!-- User table -->
+      
+		<c:catch var="sqlException">
 		<sql:query var="users" dataSource="${dbConnection}">
 		SELECT * FROM users limit 5;
 		</sql:query>
+      </c:catch>
+      <c:choose>
+    <c:when test="${not empty sqlException}">
+        <!-- Handle SQL Exception -->
+        <p style=" color: Red; font-size: 24px; font-weight: 600; text-align: center; margin-top: 40px;">Server Error</p>
+    </c:when>
+    <c:otherwise>
       
       <h1>User Management</h1>
       <table>
@@ -75,12 +86,21 @@
           </c:forEach>
         </tbody>
       </table>
+      </c:otherwise>
+      </c:choose>
       </div>
       
-
+<c:catch var="sqlException">
 	<sql:query var="products" dataSource="${dbConnection}">
 		SELECT * FROM products order by price desc limit 5;
 	</sql:query>
+	</c:catch>
+	<c:choose>
+    <c:when test="${not empty sqlException}">
+        <!-- Handle SQL Exception -->
+        <p style=" color: Red; font-size: 24px; font-weight: 600; text-align: center; margin-top: 40px;">Server Error</p>
+    </c:when>
+    <c:otherwise>
 	<div class="product">
       <!-- Product Management -->
       <h1>Product Management</h1>
@@ -110,13 +130,25 @@
       </table>
 		<a class = "button" href="/CourseWork/Htmls/AddProduct.jsp">Add Product</a>
 		</div>
+		
+		</c:otherwise>
+		</c:choose>
       <!-- Order Management -->
+      
       <sql:setDataSource var="dbConnection" driver="com.mysql.cj.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/coursework" user="root"
 		password="" />
+		<c:catch var="sqlException">
       <sql:query var="orders" dataSource="${dbConnection}">
-		SELECT * FROM orders
+		SELECT * FROM orders limit 5;
 	</sql:query>
+	</c:catch>
+	<c:choose>
+    <c:when test="${not empty sqlException}">
+        <!-- Handle SQL Exception -->
+        <p style=" color: Red; font-size: 24px; font-weight: 600; text-align: center; margin-top: 40px;">Server Error</p>
+    </c:when>
+    <c:otherwise>
       <div class = "order">
       <h1>Order Management</h1>
       <table>
@@ -147,6 +179,8 @@
         </tbody>
       </table>
        </div>
+       </c:otherwise>
+       </c:choose>
       </div>
   </body>
 </html>

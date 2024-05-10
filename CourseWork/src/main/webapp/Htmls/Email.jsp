@@ -24,9 +24,18 @@
 	<jsp:include page="Header.jsp"></jsp:include>
 	
 	<sql:setDataSource var="connection" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/coursework" user="root" password=""/>
+	<c:catch var="sqlException">
 	<sql:query var="userEmail" dataSource="${connection }">
 		select * from users where email = "<%=userEmail %>";
 	</sql:query>
+	</c:catch>
+	
+	<c:choose>
+    <c:when test="${not empty sqlException}">
+        <!-- Handle SQL Exception -->
+        <p style=" color: Red; font-size: 24px; font-weight: 600; text-align: center; margin-top: 40px;">Server Error</p>
+    </c:when>
+    <c:otherwise>
 	<c:forEach var="user" items="${userEmail.rows}">
 	<div class="main-div">
 	<div class="left-nav">
@@ -34,6 +43,7 @@
 		<ul>
 			<li><a href="/CourseWork/Htmls/profile.jsp" style="color: black"><img alt="error" src="/CourseWork/icons/profile.png">  Basic Information</a></li>
 			<li class="active"><a href="/CourseWork/Htmls/Email.jsp"><img alt="error" src="/CourseWork/icons/password.png">  Change Password</a></li>
+			<li><a href="/CourseWork/Htmls/OrderHistory.jsp" style="color: black"><img alt="error" src="/CourseWork/icons/history.png">  Order History</a></li>
 		</ul>
 	</div>
 	
@@ -45,7 +55,7 @@
 			if(errormessage != null && !errormessage.isEmpty()){
 		%>
 
-			<p class="error-message" style="color:white; font-weigth: 100; font-size:1.5rem; background-color: red"><%=errormessage%></p>
+			<p class="error-message" style="color:red; font-weigth: 100; font-size:1.5rem;"><%=errormessage%></p>
 		<%
 				
 			}
@@ -89,6 +99,8 @@
 	</div>
 	
 	</c:forEach>
+	</c:otherwise>
+	</c:choose>
 	<jsp:include page="Footer.jsp"></jsp:include>
 	
 	<script type="text/javascript">

@@ -13,13 +13,36 @@
 	<%
 		String productName = request.getParameter("productName");
 	%>
+	
+	
 
 	<jsp:include page="Header.jsp"></jsp:include>
 	
+	<div style="display:flex; justify-content: center; margin-top: 10px;">
+		<%
+			String errormessage = (String) request.getAttribute("BuyErrorMessage");
+			if(errormessage != null && !errormessage.isEmpty()){
+		%>
+
+			<p class="error-message" style="color:red; font-weigth: 100; font-size:1.5rem;"><%=errormessage%></p>
+		<%
+				
+			}
+		%>
+	</div>
+	
 	<sql:setDataSource var="connection" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/coursework" user="root" password=""/>
+	<c:catch var="sqlException">
 	<sql:query var="product" dataSource="${connection }">
 		select * from products where productName = "<%=productName %>";
 	</sql:query>
+	</c:catch>
+	<c:choose>
+    <c:when test="${not empty sqlException}">
+        <!-- Handle SQL Exception -->
+        <p style=" color: Red; font-size: 24px; font-weight: 600; text-align: center; margin-top: 40px;">Server Error</p>
+    </c:when>
+    <c:otherwise>
 	
 	<c:forEach var="product" items="${product.rows}">
 	
@@ -41,13 +64,15 @@
 
             </div>
             <div class="buttons">
-                <a href="/CourseWork/Htmls/BuyNow.jsp">Buy</a>
+                <a href="/CourseWork/BuyNowServlet?id=${product.product_Id}">Buy</a>
                 <a href="/CourseWork/CartServlet?id=${product.product_Id }">Add to Cart</a>
             </div>
         </div>
     </section>
     </div>
     </c:forEach>
+    </c:otherwise>
+    </c:choose>
     <jsp:include page="Footer.jsp"></jsp:include>
 </body>
 </html>

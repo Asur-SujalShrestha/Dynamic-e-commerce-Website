@@ -84,7 +84,19 @@
 		</div>
 		<div class='userInput'>
 			<label>Birth date</label>
+			<%
+				String BirthDayErrorMessage = (String) request.getAttribute("BirthDayErrorMessage");
+				if(BirthDayErrorMessage != null && !BirthDayErrorMessage.isEmpty()){
+			%>
+			<input name = 'birthday' type="date" placeholder="<%=BirthDayErrorMessage %>" style="border: 2px solid red;" required>
+			<%
+				}
+				else{
+			%>
 			<input name = 'birthday' type="date" placeholder="Enter your birthdate" required>
+			<%
+				}
+			%>
 		</div>
 		<div class='userInput'>
 			<label>Gender</label>

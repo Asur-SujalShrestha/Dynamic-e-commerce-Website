@@ -73,6 +73,7 @@
 <sql:setDataSource var="dbConnection" driver="com.mysql.cj.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/coursework" user="root"
 		password="" />
+	
 
 	<sql:query var="orders" dataSource="${dbConnection}">
 		SELECT orderId, orderStatus FROM orders where orderId = <%=orderId %>;

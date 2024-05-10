@@ -18,9 +18,11 @@
 	
 
 	<div class="containers">
+	
 	<%
+	
 	List<product> productList = (List<product>) request.getAttribute("items");
-	if(!productList.isEmpty() && productList != null){
+	if(productList != null && !productList.isEmpty()){
 		for(product products: productList){
 	%>
 	

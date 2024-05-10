@@ -7,7 +7,7 @@
 <%@ page import="DBController.DatabaseController" %>
     <%
     ArrayList<CartItems> cart_items = (ArrayList<CartItems>) session.getAttribute("cart_items");
-    List<CartItems> cartProduct = null;
+    ArrayList<CartItems> cartProduct = null;
     if(cart_items != null)
     {
     	DatabaseController dbController = new DatabaseController();
@@ -15,7 +15,8 @@
     	double total = dbController.getTotalPrice(cart_items);
     	request.setAttribute("cart_items", cart_items);
     	request.setAttribute("total", total);
-    }
+    	session.setAttribute("orderItemList",cartProduct);
+   }
     %>
 <!DOCTYPE html>
 <html>
@@ -92,18 +93,28 @@
   <body>
   	
   	<%
-  		String userSession = (String) session.getAttribute("userName");
-  		boolean isLoggedIn = userSession != null;
-  	%>
+  	  	String userSession = (String) session.getAttribute("userName");
+  	  	String UserID = null;
+  	  	Cookie[] cookies = request.getCookies();
+  	  	if (cookies != null) {
+  	  		for (Cookie cookie : cookies) {
+  	  			if (cookie.getName().equals("userID")) UserID = cookie.getValue();	
+  	  		}
+  	  	}
+  	  	
+  	  	request.setAttribute("userID", UserID);
+  	  	boolean isLoggedIn = userSession != null;
+  	  	%>
   	
   	<jsp:include page="Header.jsp"></jsp:include>
   
   	<%
   		if(isLoggedIn){
   	%>
-  
+  <form action="/CourseWork/OrderServlet" method="post">
     <div class="items">
       <h1>Cart Items</h1>
+      
       <table>
         <thead>
           <tr>
@@ -120,9 +131,9 @@
         		for(CartItems c:cartProduct)
         		{ %>
         			<tr>
-                    <td><%= c.getProductId() %></td>
-                    <td><%= c.getProductName() %></td>
-                    <td><%= c.getPrice() %></td>
+        			<td><input name="productId" type="text" value="<%= c.getProductId() %>"  Readonly style="border: none; outline: none; text-align: center;"></td>
+        			<td><input name="productName" type="text" value="<%= c.getProductName() %>"  Readonly style="border: none; outline: none; text-align: center;"></td>
+        			<td><input name="productPrice" type="text" value="<%= c.getPrice() %>"  Readonly style="border: none; outline: none; text-align: center;"></td>
                     <td>
                       <div class="quantity">
                         <a  href = "/CourseWork/QuantityServlet?action=decrease&id=<%= c.getProductId()%>">-</a>
@@ -159,14 +170,17 @@
           <tr>
             <td colspan="2"></td>
             <td>Total:</td>
-            <td>Rs ${(total>0)?total:0}</td>
+            <td><input name="cartTotal" value="${(total>0)?total:0}" Readonly style="border: none; outline: none; text-align: center;"></td>
+            
           </tr>
         </tfoot>
       </table>
        <div style="text-align: center; margin-top:50px;">
-    <a class="button" href="/CourseWork/Htmls/BuyNow.jsp">Check Out</a>
+       <button class="button" type="submit">Check Out</button>
+    
 </div>
     </div>
+    </form>
     
     <%
   		}

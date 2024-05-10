@@ -15,13 +15,13 @@
         <video autoplay loop><source src="/CourseWork/image/large.mp4" type="video/mp4"></video>
         <div class="hero">
             <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Enjoy with apple</h2>
-            <p style="margin-bottom: 15px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas dolor aut velit ipsum sunt illo ipsa architecto, officia delectus dolorum?</p>
-            <button><a href="#">Shop Now</a></button>
+            <p style="margin-bottom: 15px; text-align: justify;"> From powerful iPhones to sleek MacBooks, explore a world where creativity meets functionality. Elevate your digital experience and embrace the future with style.</p>
+            <button><a href="#catagories">Shop Now</a></button>
         </div>
     </div>
 
     <section class="catagories-section">
-        <div class="catagories">
+        <div class="catagories" id="catagories">
             <div class="card">
                 <a href="/CourseWork/ProductServlet?productName=mac"><img src="/CourseWork/devices/Laptop/mac pro 16 inch.jfif" alt="error"></a>
             </div>

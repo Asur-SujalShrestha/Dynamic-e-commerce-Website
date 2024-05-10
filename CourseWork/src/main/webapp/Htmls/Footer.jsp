@@ -13,7 +13,7 @@
         <div class="footer">
             <div class="container">
               <div class="col1">
-                <h2 style="margin: 20px;">Catalyst</h2>
+                <h2 style="margin: 20px;">AppleHub</h2>
                 <p>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
                   alias eligendi a ipsam? Magnam ullam ut omnis, dignissimos quibusdam
@@ -26,11 +26,11 @@
                   <h3>Discover</h3>
                   <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="Categories.html">Categories</a></li>
-                    <li><a href="Authors.html">Authors</a></li>
-                    <li><a href="NewArrival.html">New Arrival</a></li>
-                    <li><a href="AwardWinning.html">Award Winning</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
+                    <li><a href="Categories.html">Mac</a></li>
+                    <li><a href="Authors.html">Iphone</a></li>
+                    <li><a href="NewArrival.html">Earpods</a></li>
+                    <li><a href="AwardWinning.html">iWatch</a></li>
+                    <li><a href="Contact.html">About Us</a></li>
                   </ul>
                 </div>
               </div>

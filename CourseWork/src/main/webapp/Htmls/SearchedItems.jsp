@@ -13,11 +13,24 @@
 <body>
 
 	<jsp:include page="Header.jsp"></jsp:include>
+	
+	<div style="display:flex; justify-content: center; margin-top: 10px;">
+		<%
+			String SearchError = (String) request.getAttribute("SearchError");
+			if(SearchError != null && !SearchError.isEmpty()){
+		%>
+
+			<p class="error-message" style="color:red; font-weigth: 100; font-size:1.5rem;"><%=SearchError%></p>
+		<%
+				
+			}
+		%>
+	</div>
 
 	<div class="containers">
 	<%
 	List<product> productList = (List<product>) request.getAttribute("items");
-	if(!productList.isEmpty() && productList != null){
+	if(productList != null && !productList.isEmpty()){
     for (product products : productList) {
 		
 	%>

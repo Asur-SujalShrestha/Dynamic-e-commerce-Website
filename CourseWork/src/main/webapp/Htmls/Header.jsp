@@ -32,7 +32,7 @@
             </div>
             
             <%
-				String SearchErrormessage = (String) request.getAttribute("errorMessage");
+				String SearchErrormessage = (String) request.getAttribute("SearcherrorMessage");
 				if(SearchErrormessage != null && !SearchErrormessage.isEmpty()){
 			%>
             <div class="search" style="border: 2px solid red;">
@@ -65,7 +65,7 @@
                     	<li><a href="/CourseWork/Htmls/profile.jsp" style="background-color: #ffffff1a; padding:3px 6px; border-radius: 20px"> Hi, <%=Username %></a></li>
                     	<li class = "profileName"><a href="/CourseWork/Htmls/profile.jsp"><i class="fa-solid fa-user"></i></a></li>
                     	<li><form action="/CourseWork/LogoutServlet" method="post">
-                 			<button type="submit">Logout</button>
+                 			<button type="submit" style="padding: 4px 7px; border-radius: 6px;">Logout</button>
                  		</form></li>
                     <%
                     	}
@@ -87,58 +87,58 @@
     <section class="sub-heading">
         <ul>
             <li><a href="/CourseWork/Htmls/Home.jsp">Home</a></li>
-            <li style="position: relative;"><a href="/CourseWork/Htmls/Products/macPage.jsp">Mac</a>
+            <li style="position: relative;"><a href="/CourseWork/ProductServlet?productName=mac">Mac</a>
                 <div class="mac">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, architecto delectus tempore hic temporibus dolores eos. Cum quidem nesciunt, consequatur ea maiores ipsum, molestias quaerat ut porro similique aspernatur ratione?</p>
                     <div class="laptop-list">
                         <ul>
-                            <li><a href="#">Mac book 14 inch</a></li>
-                            <li><a href="#">Mac book 16 inch</a></li>
-                            <li><a href="#">Mac book Air M1 13 inch</a></li>
-                            <li><a href="#">Mac book Air M2 13 inch</a></li>
-                            <li><a href="#">Mac book M2 15 inch</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=MacBook Pro 16-inch">MacBook Pro 16-inch</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=MacBook air m2 13-inch">MacBook air m2 13-inch</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=MacBook Pro 14-inch">MacBook Pro 14-inch</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=MacBook Air M3 13-inch">MacBook Air M3 13-inch</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=MacBook Air M3 15-inch">MacBook Air M3 15-inch</a></li>
                         </ul>
                     </div>
                     <img src="/CourseWork/devices/Laptop/mac pro 14 inch.png" alt="error">
                 </div>
             </li>
-            <li style="position: relative;"><a href="/CourseWork/Htmls/Products/iphonePage.jsp">iphone</a>
+            <li style="position: relative;"><a href="/CourseWork/ProductServlet?productName=iphone">iphone</a>
                 <div class="mac">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, architecto delectus tempore hic temporibus dolores eos. Cum quidem nesciunt, consequatur ea maiores ipsum, molestias quaerat ut porro similique aspernatur ratione?</p>
                     <div class="laptop-list">
                         <ul>
-                            <li><a href="#">iphone 11</a></li>
-                            <li><a href="#">iphone 12</a></li>
-                            <li><a href="#">iphone 13</a></li>
-                            <li><a href="#">iphone 14</a></li>
-                            <li><a href="#">iphone 15</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Iphone 13">Iphone 13</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Iphone 13 Plus">Iphone 13 Plus</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Iphone 14 Plus">Iphone 14 Plus</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Iphone 15">Iphone 15</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Iphone 15 pro">Iphone 15 pro</a></li>
                         </ul>
                     </div>
                     <img src="/CourseWork/devices/Phone/Iphone 15 pro max.png" alt="error">
                 </div></li>
-            <li style="position: relative;"><a href="/CourseWork/Htmls/Products/watchPage.jsp">iWatch</a>
+            <li style="position: relative;"><a href="/CourseWork/ProductServlet?productName=watch">iWatch</a>
                 <div class="mac">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, architecto delectus tempore hic temporibus dolores eos. Cum quidem nesciunt, consequatur ea maiores ipsum, molestias quaerat ut porro similique aspernatur ratione?</p>
                     <div class="laptop-list">
                         <ul>
-                            <li><a href="#">Apple watch hermes</a></li>
-                            <li><a href="#">Apple watch SE</a></li>
-                            <li><a href="#">Apple Watch series 9</a></li>
-                            <li><a href="#">Apple watch ultra 2</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Apple Watch hermes">Apple Watch hermes</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Apple Watch SE">Apple Watch SE</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Apple Watch Series 9">Apple Watch Series 9</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=Apple Watch Ultra 2">Apple Watch Ultra 2</a></li>
                             <!-- <li><a href="#">iphone 15</a></li> -->
                         </ul>
                     </div>
                     <img src="/CourseWork/devices/Watch/Apple watch series 9.png" alt="error">
                 </div></li>
-            <li style="position: relative;"><a href="/CourseWork/Htmls/Products/earpodPage.jsp">Earpods</a>
+            <li style="position: relative;"><a href="/CourseWork/ProductServlet?productName=airpod">Earpods</a>
                 <div class="mac">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, architecto delectus tempore hic temporibus dolores eos. Cum quidem nesciunt, consequatur ea maiores ipsum, molestias quaerat ut porro similique aspernatur ratione?</p>
                     <div class="laptop-list">
                         <ul>
-                            <li><a href="#">Airpods 2nd Generation</a></li>
-                            <li><a href="#">AirPods 3rd Generation</a></li>
-                            <li><a href="#">Airpods pro 2nd Generation</a></li>
-                            <li><a href="#">AirPods Pro Max</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=AirPods 2nd Gen">AirPods 2nd Gen</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=AirPods 3rd Gen">AirPods 3rd Gen</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=AirPods pro 2nd Gen">AirPods pro 2nd Gen</a></li>
+                            <li><a href="/CourseWork/Htmls/ProductDetail.jsp?productName=AirPods Pro Max">AirPods Pro Max</a></li>
                         </ul>
                     </div>
                     <img src="/CourseWork/devices/Earpods/AirPods Pro (2nd generation).jfif" alt="error">

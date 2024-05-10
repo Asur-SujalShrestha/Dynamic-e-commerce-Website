@@ -12,6 +12,19 @@
 </head>
 <body>
 	<jsp:include page="Header.jsp"></jsp:include>
+	
+	<div style="display:flex; justify-content: center; margin-top: 10px;">
+		<%
+			String errormessage = (String) request.getAttribute("ReviewMessage");
+			if(errormessage != null && !errormessage.isEmpty()){
+		%>
+
+			<p class="error-message" style="color:red; font-weigth: 100; font-size:1.5rem;"><%=errormessage%></p>
+		<%
+				
+			}
+		%>
+	</div>
 
 	<div class="containers">
     <h1>Get to know us</h1>
@@ -102,7 +115,7 @@
             ></a>
             </div>
         <h2>Get in touch</h2>
-        <form>
+        <form action="/CourseWork/ReviewServlet" method="post">
             <div class="form">
               <div class="details">
                 <label for="name">Your Name:</label>
