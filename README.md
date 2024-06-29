@@ -6,7 +6,9 @@
 ![Screenshot (197)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/01ce1299-1b5f-4f63-b535-676c50717590)
 ![Screenshot (209)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/42f0053d-8e3a-45ff-b7e1-01099e81a015)
 ![Screenshot (210)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/81c1c3d9-7882-49d5-8a38-6eedf6d322c9)
-![Screenshot (176)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811![Screenshot (177)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/b4c3e0![Screenshot (174)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/dba0aeda-64b9-4ae1-a223-70d5a354eb55)
-14-76f0-4e14-9e02-2fa206e3623f)
+
 708/8841a026-1fe9-46b0-ba87-6b681016fe16)
 ![Screenshot (175)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/074eb610-28c7-4772-90bb-cd516991c91b)
+![Screenshot (176)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/30928fa3-3842-4d86-9252-7e84f3333b66)
+![Screenshot (177)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/85d3edd1-d89d-41a6-985d-a3d2d64ef0a3)
+![Screenshot (174)](https://github.com/Asur-SujalShrestha/Dynamic-e-commerce-Website/assets/165811708/067574ba-8570-44a5-9338-59d40faa16a0)
