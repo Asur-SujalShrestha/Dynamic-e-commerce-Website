@@ -1,6 +1,13 @@
 package Model;
 
-public class product {
+import java.io.File;
+import java.io.Serializable;
+
+import javax.servlet.http.Part;
+
+import Controller.Utils.StringUtils;
+
+public class product implements Serializable{
 	private int productId;
     private String productName;
     private double price;
@@ -8,21 +15,24 @@ public class product {
     private String productImage;
     private String productDescription;
     
-    public product(int productId, String productName, double price, int quantity, String productDescription, String productImage) {
+    public product(int productId, String productName, double price, int quantity, String productDescription, Part productImage) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
         this.productDescription = productDescription;
-        this.productImage = productImage;
+        this.productImage = getImageUrl(productImage);
     }
     
-    public product(String productName, double price, int quantity) {
+    public product(String productName, double price, int quantity, String description, String productImage) {
 
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+        this.productDescription = description;
+        this.productImage = productImage;
     }
+    
     
     public product(int productId, String productName, double price, int stockQuantity) {
 		this.productId = productId;
@@ -79,4 +89,23 @@ public class product {
 		this.productImage = productImage;
 	}
 	
+	private String getImageUrl(Part part) {
+		String savePath = StringUtils.PRODUCT_IMAGE_DIR_SAVE_PATH;
+		File fileSaveDir = new File(savePath);
+		String imageUrlFromPart = null;
+		if (!fileSaveDir.exists()) {
+			fileSaveDir.mkdir();
+		}
+		String contentDisp = part.getHeader("content-disposition");
+		String[] items = contentDisp.split(";");
+		for (String s : items) {
+			if (s.trim().startsWith("filename")) {
+				imageUrlFromPart = s.substring(s.indexOf("=") + 2, s.length() - 1);
+			}
+		}
+		if (imageUrlFromPart == null || imageUrlFromPart.isEmpty()) {
+			imageUrlFromPart = "download.jpg";
+		}
+		return imageUrlFromPart;
+}
 }

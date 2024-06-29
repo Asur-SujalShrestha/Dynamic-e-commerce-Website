@@ -55,8 +55,9 @@ public class SearchServlet extends HttpServlet {
 			request.getRequestDispatcher("/Htmls/SearchedItems.jsp").forward(request, response);
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String SearchError = "Server Error";
+			request.setAttribute("SearchError", SearchError);
+			request.getRequestDispatcher("/Htmls/SearchedItems.jsp").forward(request, response);
 		}
 	}
 	

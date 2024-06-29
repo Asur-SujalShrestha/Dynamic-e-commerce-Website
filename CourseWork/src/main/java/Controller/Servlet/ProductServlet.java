@@ -47,8 +47,9 @@ public class ProductServlet extends HttpServlet {
 			request.getRequestDispatcher("/Htmls/product1.jsp").forward(request, response);
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String ProductErrormessage = "Server Error";
+			request.setAttribute("errorMessage", ProductErrormessage);
+			request.getRequestDispatcher("/Htmls/product1.jsp").forward(request, response);
 		}
 		
 	}

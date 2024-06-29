@@ -50,7 +50,7 @@ public class DeleteServlet extends HttpServlet {
 	    	request.getRequestDispatcher("/Htmls/DeleteProduct.jsp").forward(request, response);
 	        return;
 	    } else {
-	    	request.setAttribute("serverError", "An unexpected server error occurred.");
+	    	request.setAttribute("errorMessage", "An unexpected server error occurred.");
 	    	request.getRequestDispatcher("/Htmls/DeleteProduct.jsp").forward(request, response);
 	        return;
 	}

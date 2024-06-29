@@ -1,11 +1,13 @@
 package DBController;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,9 +153,22 @@ public class DatabaseController {
 
 	public ResultSet searchItem(String search) throws ClassNotFoundException, SQLException {
 		Connection con = databaseConnection();
-		String query = "select * from products where productName like ? order by price desc";
+		/*
+		 * String query =
+		 * "select * from products where productName like ? order by price desc";
+		 */
+		String query = "select * from products where productName like ? or price < ?";
 		PreparedStatement statement = con.prepareStatement(query);
-		statement.setString(1, "%"+ search + "%");
+		
+		try {
+			
+			statement.setInt(2, Integer.parseInt(search));
+			statement.setString(1, "%"+ search + "%");
+		}
+		catch(Exception e){
+			statement.setString(1, "%"+ search + "%");
+			statement.setInt(2, 0);
+		}
 		ResultSet row = statement.executeQuery();
 		return row;
 	}
@@ -170,11 +185,13 @@ public class DatabaseController {
 	public int addProduct(product product)
 	{
 		try (Connection con = databaseConnection()){
-			String query = "INSERT INTO products (productName, price, stock_Quantity) VALUES (?, ?, ?)";
+			String query = "INSERT INTO products (productName, price, stock_Quantity, product_image, productDescription) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, product.getProductName());
 			st.setDouble(2, product.getPrice());
 			st.setInt(3, product.getQuantity());
+			st.setString(4, product.getProductImage());
+			st.setString(5, product.getProductDescription());
 
 			int result = st. executeUpdate();
 			return result > 0 ? 1 : 0;
@@ -219,7 +236,6 @@ public class DatabaseController {
 		}
 		catch(SQLException | ClassNotFoundException ex)
 		{
-			ex.printStackTrace();
 			return -1;
 
 		}
@@ -268,9 +284,9 @@ public class DatabaseController {
 		return products;
 	}
 
-	public List<CartItems> getCartProducts(ArrayList<CartItems> cartItems)
+	public ArrayList<CartItems> getCartProducts(ArrayList<CartItems> cartItems)
 	{
-		List<CartItems> products = new ArrayList<CartItems>();
+		ArrayList<CartItems> products = new ArrayList<CartItems>();
 
 		try(Connection con = databaseConnection())
 		{
@@ -323,6 +339,108 @@ public class DatabaseController {
 			e.printStackTrace();
 		}
 		return total;
+	}
+	
+	public int orderProduct(String id, ArrayList<CartItems> productList, String cartTotal) throws ClassNotFoundException, SQLException {
+		String productID = null;
+		double lineTotal = 0;
+		LocalDate today = LocalDate.now();
+		String orderStatus = "Pending";
+		int orderedQuantity = 0;
+		int result = 0;
+		for(CartItems orderItem: productList) {
+			productID = String.valueOf(orderItem.getProductId());
+			lineTotal = orderItem.getPrice();
+			orderedQuantity = orderItem.getQuantity();
+			
+			Connection con = databaseConnection();
+			String query = "insert into orders(orderDate, orderTotal, orderStatus, userId) values(?,?,?,?); insert into cart_items(productId, quantity, lineTotal) values(?,?,?);";
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setDate(1, Date.valueOf(today));
+			statement.setString(2, cartTotal);
+			statement.setString(3, orderStatus);
+			statement.setString(4, id);
+			statement.setString(5, productID);
+			statement.setInt(6, orderedQuantity);
+			statement.setDouble(7, lineTotal);
+			result = statement.executeUpdate();
+			
+		}
+		return result;
+		
+	}
+	
+	public ResultSet buyProduct(String id) throws ClassNotFoundException, SQLException {
+		Connection con = databaseConnection();
+		String query = "select * from products where product_Id = ?";
+		PreparedStatement statement = con.prepareStatement(query);
+		statement.setString(1, id);
+		ResultSet row = statement.executeQuery();
+		return row;
+	}
+	
+	public int storeBuyProduct(String id, String productId, int quantity, double lineTotal, double orderTotal, LocalDate today, String orderStatus) {
+		Connection con;
+		int mainResult = 0;
+		String DB_orderID = null;
+		try {
+			con = databaseConnection();
+			con.setAutoCommit(false);
+			String query = "insert into orders(orderDate, orderTotal, orderStatus, userId) values(?,?,?,?);";
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.setDate(1, Date.valueOf(today));
+			statement.setDouble(2, orderTotal);
+			statement.setString(3, orderStatus);
+			statement.setString(4, id);
+			int result = statement.executeUpdate();
+			con.setAutoCommit(true);
+			
+			String orderID = "SELECT * from orders where userId = ? order by orderId desc limit 1";
+			PreparedStatement orderStatement = con.prepareStatement(orderID);
+			orderStatement.setString(1, id);
+			ResultSet row = orderStatement.executeQuery();
+			if(row.next()) {
+				DB_orderID = row.getString("orderId");
+				System.out.println("Retrieved orderId: " + DB_orderID);
+			}
+			else {
+				DB_orderID = "0";
+			}
+			
+			String cartItemsQuery = "INSERT INTO cart_items (productId, quantity, lineTotal, orderId) VALUES (?, ?, ?,?)";
+			PreparedStatement cartItemsStatement = con.prepareStatement(cartItemsQuery);
+			cartItemsStatement.setString(1, productId);
+			cartItemsStatement.setInt(2, quantity);
+			cartItemsStatement.setDouble(3, lineTotal);
+			cartItemsStatement.setString(4, DB_orderID);
+			int cartItemsResult = cartItemsStatement.executeUpdate();
+			
+			if(result >0 && cartItemsResult > 0 ) {
+				mainResult = 1;
+				con.setAutoCommit(true);
+			}
+			else {
+				mainResult = 0;
+				
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mainResult;
+	
+	}
+	public int reviewStore(String userName, String email, String phone, String message) throws ClassNotFoundException, SQLException {
+		Connection con = databaseConnection();
+		String query = "insert into review(UserName, UserEmail, phone, Message) values(?,?,?,?)";
+		PreparedStatement statement = con.prepareStatement(query);
+		statement.setString(1, userName);
+		statement.setString(2, email);
+		statement.setString(3, phone);
+		statement.setString(4, message);
+		int result = statement.executeUpdate();
+		return result;
 	}
 }
 

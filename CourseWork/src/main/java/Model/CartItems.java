@@ -1,6 +1,8 @@
 package Model;
 
-	public class CartItems extends product{
+import java.io.Serializable;
+
+public class CartItems extends product implements Serializable{
 		private int quantity;
 		private int lineTotal;
 		private int cartId;
@@ -26,13 +28,6 @@ package Model;
 		}
 		public void setLineTotal(int lineTotal) {
 			this.lineTotal = lineTotal;
-		}
-		private int getCartId()
-		{
-			return cartId;
-		}
-		private void setCartId(int cartId) {
-			this.cartId = cartId;
 		}
 
 	}

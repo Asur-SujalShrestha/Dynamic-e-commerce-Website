@@ -19,4 +19,7 @@ public class StringUtils {
 	public static final String IMAGE_DIR = "Users\\DELL\\eclipse-workspace\\CourseWork\\src\\main\\webapp\\photos";
 	public static final String IMAGE_DIR_SAVE_PATH = "C:" +File.separator + IMAGE_DIR;
 	
+	public static final String PRODUCT_IMAGE_DIR = "Users\\DELL\\eclipse-workspace\\CourseWork\\src\\main\\webapp\\photos\\products";
+	public static final String PRODUCT_IMAGE_DIR_SAVE_PATH = "C:" +File.separator + PRODUCT_IMAGE_DIR;
+	
 }

@@ -36,6 +36,8 @@ public class LoginServlet extends HttpServlet {
 		String databasePassword = null;
 		String userName = null;
 		String phone = null;
+		int id = 0;
+		String userRole = null;
 		String user = "user";
 		Hashing hashed = new Hashing();
 
@@ -53,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 					userName = Result.getString("userName");
 					phone = Result.getString("phone");
 					user = Result.getString("userType");
+					id = Result.getInt("userID");
 				}
 
 				if(databasePassword != null && hashed.matchedPassword(password, databasePassword)) {
@@ -75,6 +78,14 @@ public class LoginServlet extends HttpServlet {
 					Cookie userPhone = new Cookie("phone", phone);
 					userPhone.setMaxAge(30*60);
 					response.addCookie(userPhone);
+					
+					Cookie userID = new Cookie("userID", String.valueOf(id));
+					userID.setMaxAge(30*60);
+					response.addCookie(userID);
+					
+					Cookie userType = new Cookie("userRole", user);
+					userType.setMaxAge(30*60);
+					response.addCookie(userType);
 
 					if(user.equals("admin")) {
 						response.sendRedirect("/CourseWork/Htmls/AdminDashboard.jsp");
@@ -96,7 +107,9 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			String errormessage = "Server Error. Try again";
+			request.setAttribute("errorMessage5", errormessage);
+			request.getRequestDispatcher("/Htmls/Login.jsp").forward(request, response);
 		}
 	}
 

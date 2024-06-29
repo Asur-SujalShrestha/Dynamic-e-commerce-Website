@@ -67,28 +67,31 @@ public class RegistrationServlet extends HttpServlet {
 		int number = 0;
 		int passwordLength = 0;
 
-		int userNameCharacter = 0;
-		int userNameNumber = 0;
+		int userDob = 0;
+		int userNameChatarcter = 0;
 
 		int firstNameCharacter = 0;
 		int firstNameNumber = 0;
 
 		int lastNameCharacter = 0;
 		int lastNameNumber = 0;
+		
+		if(birthDate.isAfter(LocalDate.now())) {
+			userDob = 1;
+		}
 
 		for(int i=0; i < userName.length(); i++) {
 			char character = userName.charAt(i);
-			if(character == '!' || character == '@' || character == '#'|| character == '$' || character == '%' || character == '&' || character == '*') {
-				userNameCharacter += 1;
-			}
-			if(Character.isDigit(character)) {
-				userNameNumber +=1;
+			if(character == '!' || character == '@' || character == '#'|| character == '$' || character == '%' || character == '&' || character == '*' || character == '^' || character == '(' || character == ')' || character == '_' || character == '-' || character == '+' || character == '='
+					|| character == '{' || character == '}' || character == '[' || character == ']' || character == ':' || character == ';' || character == '"' || character == '/' || character == '?' || character == '>' || character == '<' || character == '.' || character == ',' || character == '|') {
+				userNameChatarcter +=1;
 			}
 		}
 
 		for(int i=0; i < lastName.length(); i++) {
 			char character = lastName.charAt(i);
-			if(character == '!' || character == '@' || character == '#'|| character == '$' || character == '%' || character == '&' || character == '*') {
+			if(character == '!' || character == '@' || character == '#'|| character == '$' || character == '%' || character == '&' || character == '*' || character == '^' || character == '(' || character == ')' || character == '_' || character == '-' || character == '+' || character == '='
+					|| character == '{' || character == '}' || character == '[' || character == ']' || character == ':' || character == ';' || character == '"' || character == '/' || character == '?' || character == '>' || character == '<' || character == '.' || character == ',' || character == '|') {
 				lastNameCharacter += 1;
 			}
 			if(Character.isDigit(character)) {
@@ -98,7 +101,8 @@ public class RegistrationServlet extends HttpServlet {
 
 		for(int i=0; i < firstName.length(); i++) {
 			char character = firstName.charAt(i);
-			if(character == '!' || character == '@' || character == '#'|| character == '$' || character == '%' || character == '&' || character == '*') {
+			if(character == '!' || character == '@' || character == '#'|| character == '$' || character == '%' || character == '&' || character == '*' || character == '^' || character == '(' || character == ')' || character == '_' || character == '-' || character == '+' || character == '='
+					|| character == '{' || character == '}' || character == '[' || character == ']' || character == ':' || character == ';' || character == '"' || character == '/' || character == '?' || character == '>' || character == '<' || character == '.' || character == ',' || character == '|') {
 				firstNameCharacter += 1;
 			}
 			if(Character.isDigit(character)) {
@@ -129,10 +133,10 @@ public class RegistrationServlet extends HttpServlet {
 			if(firstNameNumber < 1) {
 				if(lastNameCharacter <1) {
 					if(lastNameNumber <1) {
-
+						if(userDob < 1) {
 						if(passwordLength < 1) {
-							if(userNameCharacter < 1) {
-								if(userNameNumber < 1) {
+							
+								if(userNameChatarcter < 1) {
 									if(specialCharacter >0) {
 										if(capitalCharacter > 0) {
 											if(number > 0) {
@@ -203,7 +207,7 @@ public class RegistrationServlet extends HttpServlet {
 														else {
 															//								response.getWriter().println("Register Failed!!");
 															request.setAttribute(StringUtils.errorMessage, StringUtils.server_Error);
-															request.getRequestDispatcher("/Htmls/index.jsp").forward(request, response);
+															request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
 														}
 													}
 												}
@@ -236,17 +240,11 @@ public class RegistrationServlet extends HttpServlet {
 								}
 
 								else {
-									String errormessage = "No Number Allowed";
+									String errormessage = "No Special Character Allowed";
 									request.setAttribute("errorMessage2", errormessage);
 									request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
 								}
-							}
-
-							else {
-								String errormessage = "No Special Character Allowed";
-								request.setAttribute("errorMessage2", errormessage);
-								request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
-							}	
+								
 						}
 						else {
 							String errormessage = "Password must be 8 character long and less than 16 character";
@@ -254,6 +252,12 @@ public class RegistrationServlet extends HttpServlet {
 							request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
 						}
 					}
+						else {
+							String errormessage = "BirthDay cannot be today or Tomorrow";
+							request.setAttribute("BirthDayErrorMessage", errormessage);
+							request.getRequestDispatcher("/Htmls/Register.jsp").forward(request, response);
+						}
+						}
 					else {
 						String errormessage = "Cannot contains Numbers";
 						request.setAttribute("errorMessage4", errormessage);
