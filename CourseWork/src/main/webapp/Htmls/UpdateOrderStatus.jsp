@@ -74,10 +74,17 @@
 		url="jdbc:mysql://localhost:3306/coursework" user="root"
 		password="" />
 	
-
+	<c:catch var="sqlException">
 	<sql:query var="orders" dataSource="${dbConnection}">
 		SELECT orderId, orderStatus FROM orders where orderId = <%=orderId %>;
 	</sql:query>
+	</c:catch>
+	<c:choose>
+    <c:when test="${not empty sqlException}">
+        <!-- Handle SQL Exception -->
+        <p style=" color: Red; font-size: 24px; font-weight: 600; text-align: center; margin-top: 40px;">Server Error</p>
+    </c:when>
+    <c:otherwise>
 <div class="order_container">
     <h1>Update Order Status</h1>
     <form action="/CourseWork/UpdateOrderStatusServlet" method="post">
@@ -94,5 +101,7 @@
         </c:forEach>
     </form>
     </div>
+    </c:otherwise>
+    </c:choose>
 </body>
 </html>

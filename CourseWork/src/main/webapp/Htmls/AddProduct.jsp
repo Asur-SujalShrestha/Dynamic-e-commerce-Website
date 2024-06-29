@@ -62,7 +62,12 @@
         <input type="text" id="price" name="price"><br>
         <label for="quantity">Quantity:</label><br>
         <input type="text" id="quantity" name="quantity"><br><br>
+        <label for="productImage">Product Image:</label><br>
+        <input type="file" id="productImage" name="productImage"><br><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br><br>
         <input type="submit" value="Add Product">
+        
     </form>
     </div>
 </body>

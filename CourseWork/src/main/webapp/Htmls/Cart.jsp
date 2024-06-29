@@ -176,8 +176,19 @@
         </tfoot>
       </table>
        <div style="text-align: center; margin-top:50px;">
+       <%
+       	if(cartProduct != null && !cartProduct.isEmpty()){
+       %>
        <button class="button" type="submit">Check Out</button>
-    
+    	<%
+       	}
+       	else
+       	{
+    	%>
+    	<button class="button" type="submit" disabled>Check Out</button>
+    	<%
+    	}
+    	%>
 </div>
     </div>
     </form>

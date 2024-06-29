@@ -66,10 +66,20 @@
 <sql:setDataSource var="dbConnection" driver="com.mysql.cj.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/coursework" user="root"
 		password="" />
+		
+		<c:catch var="sqlException">
 	<sql:query var="products" dataSource="${dbConnection}">
 		
 		SELECT * FROM products where product_Id = "<%=productId %>";
 	</sql:query>
+	</c:catch>
+	
+	 <c:choose>
+    <c:when test="${not empty sqlException}">
+        <!-- Handle SQL Exception -->
+        <p style=" color: Red; font-size: 24px; font-weight: 600; text-align: center; margin-top: 40px;">Server Error</p>
+    </c:when>
+    <c:otherwise>
     <div class="update_container">
         <h1>Update Product</h1>
         <c:forEach var="product" items="${products.rows}">
@@ -86,5 +96,7 @@
         </form>
         </c:forEach>
     </div>
+    </c:otherwise>
+    </c:choose>
 </body>
 </html>

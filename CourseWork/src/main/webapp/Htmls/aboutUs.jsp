@@ -66,27 +66,27 @@
     <h2>Meet Our Team</h2>
     <div class="team">
       <div class="member">
-        <img src=""/>
+        <img src="/CourseWork/image/Sujal.png"/>
         <h3>Sujal Shrestha</h3>
         <h4>Backend developer</h4>
       </div>
       <div class="member">
-        <img src="" />
+        <img src="/CourseWork/photos/manoj.jpg" />
         <h3>Manoj Poudel</h3>
         <h4>Database Administrator</h4>
       </div>
       <div class="member">
-        <img src="" />
+        <img src="/CourseWork/image/pragati.png" />
         <h3>Pragati Kunwar Chhetri</h3>
         <h4>Frontend Developer</h4>
       </div>
       <div class="member">
-        <img src="" />
+        <img src="/CourseWork/image/utsav.png" />
         <h3>Utsav Bajracharya</h3>
         <h4>UI/UX Designer</h4>
       </div>
       <div class="member">
-        <img src="" />
+        <img src="/CourseWork/image/darsan.png" />
         <h3>Darshan Mainali</h3>
         <h4>Social Media Manager</h4>
       </div>

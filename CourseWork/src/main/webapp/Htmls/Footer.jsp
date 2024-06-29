@@ -26,11 +26,11 @@
                   <h3>Discover</h3>
                   <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="Categories.html">Mac</a></li>
-                    <li><a href="Authors.html">Iphone</a></li>
-                    <li><a href="NewArrival.html">Earpods</a></li>
-                    <li><a href="AwardWinning.html">iWatch</a></li>
-                    <li><a href="Contact.html">About Us</a></li>
+                    <li><a href="/CourseWork/ProductServlet?productName=mac">Mac</a></li>
+                    <li><a href="/CourseWork/ProductServlet?productName=iphone">Iphone</a></li>
+                    <li><a href="/CourseWork/ProductServlet?productName=airpods">Earpods</a></li>
+                    <li><a href="/CourseWork/ProductServlet?productName=watch">iWatch</a></li>
+                    <li><a href="/CourseWork/Htmls/aboutUs.jsp">About Us</a></li>
                   </ul>
                 </div>
               </div>

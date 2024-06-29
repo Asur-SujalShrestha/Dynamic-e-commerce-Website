@@ -56,7 +56,7 @@
         <div class="buy-column">
             <h1>${product.productName }</h1>
             <div class="txt-wrapper">
-                <p>${product.productDescription })
+                <p>${product.productDescription }
                 </p>
             </div>
             <h2>RS. ${product.price }</h2>
